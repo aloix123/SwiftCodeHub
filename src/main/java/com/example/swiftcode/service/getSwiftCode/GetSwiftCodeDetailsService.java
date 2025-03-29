@@ -16,7 +16,7 @@ public class GetSwiftCodeDetailsService {
 
     public Object execute(String swiftCode) {
         if(swiftCodeRepository.doesSwiftCodehaveBranches(swiftCode)) {
-            getSwiftCodeHeadquarterDetailsService.getByCode(swiftCode);
+            return getSwiftCodeHeadquarterDetailsService.getByCode(swiftCode);
         }
         return getSwiftcodeFullBranchService.getByCode(swiftCode);
     }
