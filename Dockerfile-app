@@ -2,5 +2,5 @@ FROM openjdk:24-jdk-slim
 VOLUME /tmp
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
-COPY resources/files/Interns_2025_SWIFT_CODES.xlsx /data/files/Interns_2025_SWIFT_CODES.xlsx
+COPY src/main/resources/files/Interns_2025_SWIFT_CODES.xlsx files/Interns_2025_SWIFT_CODES.xlsx
 ENTRYPOINT ["java", "-jar", "/app.jar"]
