@@ -17,11 +17,12 @@ public class SwiftCodeService {
     private  JpaSwiftCodeRepository swiftCodeRepository;
     private GetSwiftCodeHeadquarterDetailsService getSwiftCodeHeadquarterDetailsService;
     private GetSwiftcodeFullBranchService getSwiftcodeFullBranchService;
-
+    private PutSwiftCodeService putSwiftCodeService;
     public SwiftCodeService(JpaSwiftCodeRepository swiftCodeRepository) {
         this.swiftCodeRepository = swiftCodeRepository;
         this.getSwiftCodeHeadquarterDetailsService = new GetSwiftCodeHeadquarterDetailsService(swiftCodeRepository);
         this.getSwiftcodeFullBranchService = new GetSwiftcodeFullBranchService(swiftCodeRepository);
+        this.putSwiftCodeService = new PutSwiftCodeService(swiftCodeRepository);
     }
 
     public Object getDetailsOfSingleOne(String swiftCode) {
@@ -31,27 +32,17 @@ public class SwiftCodeService {
         return getSwiftcodeFullBranchService.getByCode(swiftCode);
     }
 
-    public Object getDetailsOfAllByCountry(String swiftCode) {
-        List<SwiftCodeEntity> codes = swiftCodeRepository.findAllByCountryIso2Code(swiftCode);
+    public Object getDetailsOfAllByCountry(String isoCode) {
+        List<SwiftCodeEntity> codes = swiftCodeRepository.findAllByCountryIso2Code(isoCode);
         if (codes.isEmpty()) {
-            throw new NoCountryException("No country found for ISO2 code: " + swiftCode);
+            throw new NoCountryException("No country found for ISO2 code: " + isoCode);
         }
+
         return BranchByCountryMapper.ListtoDto(codes);
     }
 
     public void putSwiftCode(BranchWithcountryNameDto dto) {
-        if(dto.getCountryISO2().length()!=2){
-            throw new Iso2CodeException(
-                    "Invalid ISO2 code: " + dto.getCountryISO2());
-        }
-        if(dto.isSomethingEmpty()){
-            throw new SomeFieldsAreNull();
-        }
-
-        if(dto.isSomeDataLowwerCase()){
-            throw new SomeFieldsAreLowwerCase();
-        }
-        swiftCodeRepository.save(FullBranchSwiftCodeMapper.toEntity(dto));
+        putSwiftCodeService.execute(dto);
     }
 
     public void deleteSwiftCode(String swiftCode) {

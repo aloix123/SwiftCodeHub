@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: "123"
       POSTGRES_PASSWORD: "123"
-      POSTGRES_DB: "mydatabase"
+      POSTGRES_DB: mydatabase
     ports:
       - "5432:5432"
     volumes:
@@ -17,6 +17,10 @@ services:
 
   swiftcode-app:
     image: swiftcode-app
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile-app
     depends_on:
       - db # Correct service name
     environment:
@@ -27,6 +31,7 @@ services:
       - "8080:8080"
     networks:
       - backend
+
 
 volumes:
   postgres-data: # Ensure this volume is properly defined

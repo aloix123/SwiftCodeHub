@@ -34,11 +34,17 @@ public class CodeXlsParser implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String xlsxFilePath = "src/main/resources/files/Interns_2025_SWIFT_CODES.xlsx";
-
-        List<SwiftCodeEntity> swiftCodes = swiftCodeRepository.findAll();
-        if (swiftCodes.isEmpty()) {
-            parseXlsxFileToDatabase(xlsxFilePath);
+        try {
+            String xlsxFilePath = "src/main/resources/files/Interns_2025_SWIFT_CODES.xlsx";
+            List<SwiftCodeEntity> swiftCodes = swiftCodeRepository.findAll();
+            if (swiftCodes.isEmpty()) {
+                parseXlsxFileToDatabase(xlsxFilePath);
+            } else {
+                System.out.println("Data already exists in the database.");
+            }
+        } catch (Exception e) {
+            System.err.println("Error in CommandLineRunner: " + e.getMessage());
+            e.printStackTrace();
         }
 
 
