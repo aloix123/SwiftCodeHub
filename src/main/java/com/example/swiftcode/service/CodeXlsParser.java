@@ -35,7 +35,7 @@ public class CodeXlsParser implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         try {
-            String xlsxFilePath = "src/main/resources/files/Interns_2025_SWIFT_CODES.xlsx";
+            String xlsxFilePath = "resources/files/Interns_2025_SWIFT_CODES.xlsx";
             List<SwiftCodeEntity> swiftCodes = swiftCodeRepository.findAll();
             if (swiftCodes.isEmpty()) {
                 parseXlsxFileToDatabase(xlsxFilePath);
