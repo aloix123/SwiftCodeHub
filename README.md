@@ -24,10 +24,10 @@ Follow the steps below to set up and run the project on your local machine.
    $ docker-compose up swiftcode-app --build
 
 🛠 Manage Docker Containers & Images
-   - Look at your processes: `$ docker ps`
-   - Look at your images: `$ docker images`
-   - Stop a process: `$ docker stop <id>`
-   - Remove an image: `$ docker rmi -f <imageid>`
+   - Look at your processes: $ docker ps
+   - Look at your images: $ docker images
+   - Stop a process: $ docker stop <id>
+   - Remove an image: $ docker rmi -f <imageid>
 
 6️⃣ Access the API
    - Open: http://localhost:8080/
