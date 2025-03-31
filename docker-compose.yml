@@ -32,6 +32,22 @@ services:
     networks:
       - backend
 
+  swiftcode-test:
+    image: swiftcode-test
+    container_name: test
+    build:
+      context: .
+      dockerfile: Dockerfile-test
+    depends_on:
+      - db # Correct service name
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mydatabase # Align with the database service name
+      SPRING_DATASOURCE_USERNAME: "123"
+      SPRING_DATASOURCE_PASSWORD: "123" # Match with POSTGRES_PASSWORD
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
 
 volumes:
   postgres-data: # Ensure this volume is properly defined
