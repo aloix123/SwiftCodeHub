@@ -23,6 +23,12 @@ Follow the steps below to set up and run the project on your local machine.
 5️⃣ Run the Backend Application
    $ docker-compose up swiftcode-app --build
 
+🛠 Manage Docker Containers & Images
+   - Look at your processes: `$ docker ps`
+   - Look at your images: `$ docker images`
+   - Stop a process: `$ docker stop <id>`
+   - Remove an image: `$ docker rmi -f <imageid>`
+
 6️⃣ Access the API
    - Open: http://localhost:8080/
    - Postman Docs: https://documenter.getpostman.com/view/16146071/2sB2cRCPSV
@@ -40,4 +46,6 @@ Follow the steps below to set up and run the project on your local machine.
 ---
 
 🚀💻 Enjoy coding with SwiftCodeHub! If you find this project useful, don't forget to ⭐ **star** the repository!
+
+
 
