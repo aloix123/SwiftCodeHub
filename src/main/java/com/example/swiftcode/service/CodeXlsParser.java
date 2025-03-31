@@ -6,13 +6,16 @@ import com.example.swiftcode.module.SwiftCodeEntity;
 import com.example.swiftcode.repository.JpaSwiftCodeRepository;
 import jakarta.annotation.PostConstruct;
 import org.apache.poi.ss.usermodel.Row;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 
 @Component
-public class CodeXlsParser {
+public class CodeXlsParser implements CommandLineRunner {
     private final JpaSwiftCodeRepository swiftCodeRepository;
 
     public CodeXlsParser(JpaSwiftCodeRepository swiftCodeRepository) {
@@ -29,14 +32,21 @@ public class CodeXlsParser {
         }
     }
 
-    @PostConstruct
-    public void init() throws IOException {
-        // Path to your XLSX file
-        String filePath = "src/main/resources/files/Interns_2025_SWIFT_CODES.xlsx";
+    @Override
+    public void run(String... args) throws Exception {
+        String xlsxFilePath = "src/main/resources/files/Interns_2025_SWIFT_CODES.xlsx";
 
-        // Call the parse method to load the data into the database
-        parseXlsxFileToDatabase(filePath);
+        List<SwiftCodeEntity> swiftCodes = swiftCodeRepository.findAll();
+        if (swiftCodes.isEmpty()) {
+            parseXlsxFileToDatabase(xlsxFilePath);
+        }
+
+
+
+
+
     }
+
 
 
 

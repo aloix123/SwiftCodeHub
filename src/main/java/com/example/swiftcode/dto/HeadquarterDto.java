@@ -1,13 +1,10 @@
 package com.example.swiftcode.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-public class HeadquarterDto extends BranchDto {
+public class HeadquarterDto extends BranchWithcountryNameDto {
+
     private List<BranchDto> branches;
     public HeadquarterDto() {}
 
@@ -15,8 +12,9 @@ public class HeadquarterDto extends BranchDto {
         this.branches = branches;
     }
 
-    public HeadquarterDto(String address, String bankName, String countryISO2, boolean isHeadquarter, String swiftCode, List<BranchDto> branches) {
-        super(address, bankName, countryISO2, isHeadquarter, swiftCode);
+    public HeadquarterDto(String address, String bankName, String countryISO2,
+                          boolean isHeadquarter, String swiftCode, List<BranchDto> branches,String countryName) {
+        super(address, bankName, countryISO2, isHeadquarter, swiftCode,countryName);
         this.branches = branches;
     }
 

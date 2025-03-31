@@ -11,6 +11,7 @@ public class HeadquarterMapper {
         dto.setBankName(entity.getName());
         dto.setCountryISO2(entity.getCountryIso2Code());
         dto.setSwiftCode(entity.getSwiftCode());
+        dto.setCountryName(entity.getCountryName());
         return dto;
     }
 }

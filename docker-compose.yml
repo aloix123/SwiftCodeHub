@@ -1,0 +1,37 @@
+version: '3.8' # Use a proper version for compatibility
+
+services:
+  db:
+    image: postgres:13
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: "123"
+      POSTGRES_PASSWORD: "123"
+      POSTGRES_DB: "mydatabase"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data # Use the defined volume for PostgreSQL data persistence
+    networks:
+      - backend
+
+  swiftcode-app:
+    image: swiftcode-app
+    depends_on:
+      - db # Correct service name
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mydatabase # Align with the database service name
+      SPRING_DATASOURCE_USERNAME: "123"
+      SPRING_DATASOURCE_PASSWORD: "123" # Match with POSTGRES_PASSWORD
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+volumes:
+  postgres-data: # Ensure this volume is properly defined
+    driver: local
+
+networks:
+  backend:
+    driver: bridge

@@ -15,4 +15,15 @@ public class FullBranchSwiftCodeMapper {
         return dto;
 
     }
+
+    public static SwiftCodeEntity toEntity(BranchWithcountryNameDto dto){
+        SwiftCodeEntity entity=new SwiftCodeEntity();
+        entity.setAddress(dto.getAddress());
+        entity.setSwiftCode(dto.getSwiftCode());
+        entity.setCodeType(dto.getSwiftCode());
+        entity.setName(dto.getBankName());
+        entity.setCountryIso2Code(dto.getCountryISO2());
+        entity.setCountryName(dto.getCountryName());
+        return entity;
+    }
 }

@@ -1,11 +1,7 @@
 package com.example.swiftcode.module;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 
-import java.util.List;
 
 @Entity
 
@@ -21,7 +17,7 @@ public class SwiftCodeEntity {
     private String swiftCode;
 
     @Column(name = "code_type", nullable = false)
-    private String codeType;
+    private String codeType="BIC11";
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -55,7 +51,7 @@ public class SwiftCodeEntity {
     }
 
     public void setCountryIso2Code(String countryIso2Code) {
-        this.countryIso2Code = countryIso2Code;
+        this.countryIso2Code = countryIso2Code.toUpperCase();
     }
 
     public String getSwiftCode() {
@@ -63,7 +59,7 @@ public class SwiftCodeEntity {
     }
 
     public void setSwiftCode(String swiftCode) {
-        this.swiftCode = swiftCode;
+        this.swiftCode = swiftCode.toUpperCase();
     }
 
     public String getCodeType() {
@@ -71,7 +67,7 @@ public class SwiftCodeEntity {
     }
 
     public void setCodeType(String codeType) {
-        this.codeType = codeType;
+        this.codeType = codeType.toUpperCase();
     }
 
     public String getName() {
@@ -79,7 +75,7 @@ public class SwiftCodeEntity {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.toUpperCase();
     }
 
     public String getAddress() {
@@ -103,7 +99,7 @@ public class SwiftCodeEntity {
     }
 
     public void setCountryName(String countryName) {
-        this.countryName = countryName;
+        this.countryName = countryName.toUpperCase();
     }
 
     public String getTimeZone() {
@@ -111,7 +107,7 @@ public class SwiftCodeEntity {
     }
 
     public void setTimeZone(String timeZone) {
-        this.timeZone = timeZone;
+        this.timeZone = timeZone.toUpperCase();
     }
 
     public SwiftCodeEntity(){}
