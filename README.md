@@ -17,10 +17,10 @@ Follow the steps below to set up and run the project on your local machine.
 3️⃣ Set Up PostgreSQL Database
    $ docker-compose up db --build
 
-4️⃣ Run Tests
+4️⃣ In another terminal run tests
    $ docker-compose up swiftcode-test --build
 
-5️⃣ Run the Backend Application
+5️⃣ In another termianl run the backend
    $ docker-compose up swiftcode-app --build
 
 🛠 Manage Docker Containers & Images
